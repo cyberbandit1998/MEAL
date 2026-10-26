@@ -1,3 +1,7 @@
+> **Note:** this is the privacy policy of the upstream Mealient project, written and signed by its
+> author. It is kept here for reference and does not describe this fork or its maintainer. Anyone
+> distributing builds of this fork should publish their own policy.
+
 ## Mealient: Privacy policy
 
 Welcome to the Mealient app for Android!

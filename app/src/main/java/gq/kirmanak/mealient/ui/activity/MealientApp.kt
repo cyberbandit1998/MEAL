@@ -22,6 +22,7 @@ import com.ramcosta.composedestinations.spec.NavHostEngine
 import com.ramcosta.composedestinations.spec.Route
 import com.ramcosta.composedestinations.utils.currentDestinationAsState
 import gq.kirmanak.mealient.ui.NavGraphs
+import gq.kirmanak.mealient.ui.ThemeSettings
 import gq.kirmanak.mealient.ui.components.rememberBaseScreenState
 
 @Composable
@@ -63,6 +64,13 @@ private fun MealientApp(
     if (state.dialogState != null) {
         MealientDialog(
             dialogState = state.dialogState,
+            onEvent = onEvent,
+        )
+    }
+
+    if (state.isThemeDialogVisible) {
+        ThemeDialog(
+            settings = state.themeSettings ?: ThemeSettings(),
             onEvent = onEvent,
         )
     }

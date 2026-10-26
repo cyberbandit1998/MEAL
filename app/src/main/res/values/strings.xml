@@ -9,7 +9,7 @@
 	<string name="content_description_fragment_recipe_info_image" translatable="false">@string/content_description_view_holder_recipe_image</string>
 	<string name="fragment_recipe_info_ingredients_header">Ingredients</string>
 	<string name="fragment_recipe_info_instructions_header">Instructions</string>
-	<string name="fragment_disclaimer_main_text">This project is developed independently from the core Mealie project. It is NOT associated with the core Mealie developers. Any issues must be reported to the Mealient repository, NOT the Mealie repository.</string>
+	<string name="fragment_disclaimer_main_text">This project is developed independently from the core Mealie project. It is NOT associated with the core Mealie developers. Any issues must be reported to the MEAL repository, NOT the Mealie repository.</string>
 	<string name="fragment_baseurl_url_input_empty">URL can\'t be empty</string>
 	<string name="fragment_base_url_no_connection">Can\'t connect, check address.</string>
 	<string name="fragment_base_url_unexpected_response">Unexpected response. Is it Mealie?</string>
@@ -72,7 +72,15 @@
 	<string name="fragment_recipes_favorite_removed">Removed %1$s from favorites</string>
 	<string name="menu_navigation_drawer_shopping_lists">Shopping lists</string>
 	<string name="menu_navigation_drawer_email_logs">Email logs</string>
-	<string name="activity_main_email_logs_subject">Mealient logs</string>
+	<string name="menu_navigation_drawer_appearance">Appearance</string>
+	<string name="theme_dialog_title">Appearance</string>
+	<string name="theme_dialog_mode_system">System default</string>
+	<string name="theme_dialog_mode_light">Light</string>
+	<string name="theme_dialog_mode_dark">Dark</string>
+	<string name="theme_dialog_dynamic_color">Dynamic color</string>
+	<string name="theme_dialog_dynamic_color_summary">Use colors from your wallpaper</string>
+	<string name="theme_dialog_close">Done</string>
+	<string name="activity_main_email_logs_subject">MEAL logs</string>
 	<string name="activity_main_email_logs_confirmation_message">The logs contain sensitive data such as API token, shopping lists, and recipes. API tokens can be revoked using web client. The file can be viewed and edited if you send it to yourself instead.</string>
 	<string name="activity_main_email_logs_confirmation_title">Sending sensitive data</string>
 	<string name="activity_main_email_logs_confirmation_positive">Choose how to send</string>

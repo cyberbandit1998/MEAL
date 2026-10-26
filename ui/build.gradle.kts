@@ -18,6 +18,7 @@ dependencies {
     testImplementation(libs.google.dagger.hiltAndroidTesting)
 
     implementation(libs.android.material.material)
+    implementation(libs.androidx.coreKtx)
     implementation(libs.androidx.compose.material)
 
     implementation(libs.androidx.paging.compose)

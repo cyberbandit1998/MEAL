@@ -11,8 +11,11 @@ import gq.kirmanak.mealient.R
 import gq.kirmanak.mealient.data.auth.AuthRepo
 import gq.kirmanak.mealient.data.baseurl.ServerInfoRepo
 import gq.kirmanak.mealient.data.disclaimer.DisclaimerStorage
+import gq.kirmanak.mealient.data.theme.ThemeStorage
 import gq.kirmanak.mealient.logging.Logger
 import gq.kirmanak.mealient.logging.getLogFile
+import gq.kirmanak.mealient.ui.ThemeMode
+import gq.kirmanak.mealient.ui.ThemeSettings
 import gq.kirmanak.mealient.ui.destinations.AuthenticationScreenDestination
 import gq.kirmanak.mealient.ui.destinations.BaseURLScreenDestination
 import gq.kirmanak.mealient.ui.destinations.DirectionDestination
@@ -33,6 +36,7 @@ internal class MainActivityViewModel @Inject constructor(
     private val logger: Logger,
     private val disclaimerStorage: DisclaimerStorage,
     private val serverInfoRepo: ServerInfoRepo,
+    private val themeStorage: ThemeStorage,
 ) : ViewModel() {
 
     private val _appState = MutableStateFlow(MealientAppState())
@@ -40,6 +44,16 @@ internal class MainActivityViewModel @Inject constructor(
 
     init {
         checkForcedDestination()
+        observeThemeSettings()
+    }
+
+    private fun observeThemeSettings() {
+        viewModelScope.launch {
+            themeStorage.themeSettingsFlow.collect { settings ->
+                logger.d { "themeSettings = $settings" }
+                _appState.update { it.copy(themeSettings = settings) }
+            }
+        }
     }
 
     private fun checkForcedDestination() {
@@ -104,6 +118,22 @@ internal class MainActivityViewModel @Inject constructor(
             is AppEvent.LaunchedIntent -> {
                 _appState.update { it.copy(intentToLaunch = null) }
             }
+
+            is AppEvent.ShowThemeDialog -> {
+                _appState.update { it.copy(isThemeDialogVisible = true) }
+            }
+
+            is AppEvent.DismissThemeDialog -> {
+                _appState.update { it.copy(isThemeDialogVisible = false) }
+            }
+
+            is AppEvent.SetThemeMode -> {
+                viewModelScope.launch { themeStorage.setThemeMode(event.mode) }
+            }
+
+            is AppEvent.SetUseDynamicColor -> {
+                viewModelScope.launch { themeStorage.setUseDynamicColor(event.useDynamicColor) }
+            }
         }
     }
 
@@ -128,9 +158,7 @@ internal class MainActivityViewModel @Inject constructor(
 
         val emailIntent = Intent(Intent.ACTION_SEND).apply {
             val subject = application.getString(R.string.activity_main_email_logs_subject)
-            val to = arrayOf(EMAIL_FOR_LOGS)
             type = "text/plain"
-            putExtra(Intent.EXTRA_EMAIL, to)
             putExtra(Intent.EXTRA_STREAM, logFileUri)
             putExtra(Intent.EXTRA_SUBJECT, subject)
         }
@@ -153,10 +181,6 @@ internal class MainActivityViewModel @Inject constructor(
         negativeButton = R.string.activity_main_email_logs_confirmation_negative,
         onPositiveClick = AppEvent.EmailLogsConfirm,
     )
-
-    companion object {
-        private const val EMAIL_FOR_LOGS = "mealient@gmail.com"
-    }
 }
 
 internal data class MealientAppState(
@@ -164,6 +188,9 @@ internal data class MealientAppState(
     val searchQuery: String = "",
     val dialogState: DialogState? = null,
     val intentToLaunch: Intent? = null,
+    /** Null until the stored settings are loaded, so the splash screen can wait for them. */
+    val themeSettings: ThemeSettings? = null,
+    val isThemeDialogVisible: Boolean = false,
 )
 
 internal data class DialogState(
@@ -209,4 +236,12 @@ internal sealed interface AppEvent {
     data object EmailLogsConfirm : AppEvent
 
     data object LaunchedIntent : AppEvent
+
+    data object ShowThemeDialog : AppEvent
+
+    data object DismissThemeDialog : AppEvent
+
+    data class SetThemeMode(val mode: ThemeMode) : AppEvent
+
+    data class SetUseDynamicColor(val useDynamicColor: Boolean) : AppEvent
 }

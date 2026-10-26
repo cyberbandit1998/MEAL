@@ -9,7 +9,7 @@
 	<string name="view_holder_recipe_text_placeholder">Laden…</string>
 	<string name="fragment_recipe_info_ingredients_header">Ingrediënten</string>
 	<string name="fragment_recipe_info_instructions_header">Instructies</string>
-	<string name="fragment_disclaimer_main_text">Dit project wordt onafhankelijk van het Mealie-kernproject ontwikkeld. Het is NIET verbonden met de kernontwikkelaars van Mealie. Eventuele problemen moeten worden gerapporteerd aan de Mealient repository, NIET aan de Mealie repository.</string>
+	<string name="fragment_disclaimer_main_text">Dit project wordt onafhankelijk van het Mealie-kernproject ontwikkeld. Het is NIET verbonden met de kernontwikkelaars van Mealie. Eventuele problemen moeten worden gerapporteerd aan de MEAL repository, NIET aan de Mealie repository.</string>
 	<string name="fragment_baseurl_url_input_empty">URL kan niet leeg zijn</string>
 	<string name="fragment_base_url_no_connection">Kan geen verbinding maken, controleer adres.</string>
 	<string name="fragment_base_url_unexpected_response">Onverwachte reactie. Is het Mealie?</string>
@@ -71,7 +71,7 @@
 	<string name="fragment_recipes_favorite_removed">Verwijderde %1$s uit favorieten</string>
 	<string name="menu_navigation_drawer_shopping_lists">Boodschappenlijstjes</string>
 	<string name="menu_navigation_drawer_email_logs">Logboeken e-mail</string>
-	<string name="activity_main_email_logs_subject">Mealient logs</string>
+	<string name="activity_main_email_logs_subject">MEAL logs</string>
 	<string name="activity_main_email_logs_confirmation_message">De logs bevatten gevoelige gegevens zoals API-tokens, boodschappenlijsten en recepten. API-tokens kunnen worden ingetrokken met de webclient. Het bestand kan worden bekeken en bewerkt als je het in plaats daarvan naar jezelf stuurt.</string>
 	<string name="activity_main_email_logs_confirmation_title">Gevoelige gegevens verzenden</string>
 	<string name="activity_main_email_logs_confirmation_positive">Kies hoe te verzenden</string>

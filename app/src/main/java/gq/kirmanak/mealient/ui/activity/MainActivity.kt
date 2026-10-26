@@ -5,11 +5,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.WindowInsetsControllerCompat
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import dagger.hilt.android.AndroidEntryPoint
-import gq.kirmanak.mealient.extensions.isDarkThemeOn
 import gq.kirmanak.mealient.logging.Logger
 import gq.kirmanak.mealient.ui.AppTheme
+import gq.kirmanak.mealient.ui.ThemeSettings
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -24,16 +25,14 @@ class MainActivity : ComponentActivity() {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
         logger.v { "onCreate() called with: savedInstanceState = $savedInstanceState" }
-        with(WindowInsetsControllerCompat(window, window.decorView)) {
-            val isAppearanceLightBars = !isDarkThemeOn()
-            isAppearanceLightNavigationBars = isAppearanceLightBars
-            isAppearanceLightStatusBars = isAppearanceLightBars
-        }
         splashScreen.setKeepOnScreenCondition {
-            viewModel.appState.value.forcedRoute == ForcedDestination.Undefined
+            // Keep the splash until the theme is known, otherwise the wrong theme flashes
+            val state = viewModel.appState.value
+            state.forcedRoute == ForcedDestination.Undefined || state.themeSettings == null
         }
         setContent {
-            AppTheme {
+            val state by viewModel.appState.collectAsState()
+            AppTheme(settings = state.themeSettings ?: ThemeSettings()) {
                 MealientApp(viewModel)
             }
         }

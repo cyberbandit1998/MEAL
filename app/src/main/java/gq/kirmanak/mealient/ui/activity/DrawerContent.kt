@@ -5,6 +5,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.Logout
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.SyncAlt
@@ -95,6 +96,11 @@ internal fun createDrawerItems(
             nameRes = R.string.menu_navigation_drawer_change_url,
             icon = Icons.Default.SyncAlt,
             direction = BaseURLScreenDestination,
+        ),
+        createActionItem(
+            nameRes = R.string.menu_navigation_drawer_appearance,
+            icon = Icons.Default.Palette,
+            appEvent = AppEvent.ShowThemeDialog,
         ),
         createActionItem(
             nameRes = R.string.menu_navigation_drawer_logout,

@@ -5,14 +5,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.core.view.WindowInsetsControllerCompat
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import dagger.hilt.android.AndroidEntryPoint
 import gq.kirmanak.mealient.R
-import gq.kirmanak.mealient.extensions.isDarkThemeOn
+import gq.kirmanak.mealient.data.theme.ThemeStorage
 import gq.kirmanak.mealient.extensions.showLongToast
 import gq.kirmanak.mealient.logging.Logger
 import gq.kirmanak.mealient.ui.AppTheme
 import gq.kirmanak.mealient.ui.OperationUiState
+import gq.kirmanak.mealient.ui.ThemeSettings
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -21,16 +23,13 @@ class ShareRecipeActivity : ComponentActivity() {
     @Inject
     lateinit var logger: Logger
 
+    @Inject
+    lateinit var themeStorage: ThemeStorage
+
     private val viewModel: ShareRecipeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        with(WindowInsetsControllerCompat(window, window.decorView)) {
-            val isAppearanceLightBars = !isDarkThemeOn()
-            isAppearanceLightNavigationBars = isAppearanceLightBars
-            isAppearanceLightStatusBars = isAppearanceLightBars
-        }
-
         if (intent.action != Intent.ACTION_SEND || intent.type != "text/plain") {
             logger.w { "onCreate: intent.action = ${intent.action}, intent.type = ${intent.type}" }
             finish()
@@ -48,7 +47,8 @@ class ShareRecipeActivity : ComponentActivity() {
         viewModel.saveRecipeByURL(url)
 
         setContent {
-            AppTheme {
+            val settings by themeStorage.themeSettingsFlow.collectAsState(initial = ThemeSettings())
+            AppTheme(settings = settings) {
                 ShareRecipeScreen()
             }
         }

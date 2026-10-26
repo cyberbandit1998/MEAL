@@ -1,50 +1,42 @@
-[![Crowdin](https://badges.crowdin.net/mealient/localized.svg)](https://crowdin.com/project/mealient)
+# MEAL
 
-<a href='https://play.google.com/store/apps/details?id=gq.kirmanak.mealient&utm_source=github&utm_campaign=readme&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img width="200" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
-<a href="https://f-droid.org/packages/gq.kirmanak.mealient">
-    <img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
-    alt="Get it on F-Droid"
-    height="80">
-</a>
+An Android client for [Mealie](https://github.com/mealie-recipes/mealie), the self-hosted recipe
+manager. Browse and search your recipes, keep them available offline, add new ones (including from a
+shared link), and manage shopping lists.
 
-
-# Mealient
-
-## DEPRECATION
-
-Thank you for your interest in Mealient! This project is no longer maintained, so feel free to fork and develop it independently.
+MEAL is a fork of [Mealient](https://github.com/kirmanak/Mealient) by Kirill Kamakin, which is no
+longer maintained. It is released under the same MIT license, see [LICENSE](LICENSE).
 
 ## DISCLAIMER
 
 This project is developed independently from the core Mealie project. It is NOT associated with the
-core Mealie developers. Any issues must be reported to the Mealient repository, NOT the Mealie
-repository.
+core Mealie developers. Report issues here, NOT in the Mealie repository.
 
-## What is this?
+## What changed from Mealient
 
-An unofficial Android client for [Mealie](https://github.com/mealie-recipes/mealie/). It enables you
-to
-easily access your recipes using an Android device. The main advantage over website is that
-recipe data is stored locally and can be accessed without the Internet connection.
+- **Works with current Mealie.** Mealient was written for Mealie v1 and cannot read recipes from
+  Mealie v2 or v3. This fork targets Mealie **v2.0 and newer** (verified against v3.29.0) and does not
+  support v1 any more. See [tools/mealie-compat](tools/mealie-compat/README.md) for the API changes.
+- **Material 3 theme.** Material You dynamic color on Android 12+, with a warm palette generated
+  from Mealie's orange as the fallback. *Appearance* in the menu lets you pick light, dark or system
+  and turn dynamic color off.
+- **Different identity.** The package is `io.github.cyberbandit1998.meal`, so it installs next to
+  Mealient instead of replacing it. The log email no longer goes to the Mealient author.
 
-## Status
+## Requirements
 
-Current version is a very early alpha which supports a small subset of the Mealie capabilities.
-Displays the list of recipes, some information about each of the recipes, even recipe creation is
-available!
-The list of shopping lists is also available, each shopping list can be viewed and modified.
+- Android 8.0 (API 26) or newer
+- A Mealie v2.0+ server
 
-## Screenshots
+## Building
 
-<img src="https://github.com/kirmanak/Mealient/blob/master/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png?raw=true" width="236" height="500" /> <img src="https://github.com/kirmanak/Mealient/blob/master/fastlane/metadata/android/en-US/images/phoneScreenshots/2.png?raw=true" width="236" height="500" /> <img src="https://github.com/kirmanak/Mealient/blob/master/fastlane/metadata/android/en-US/images/phoneScreenshots/3.png?raw=true" width="236" height="500" /> <img src="https://github.com/kirmanak/Mealient/blob/master/fastlane/metadata/android/en-US/images/phoneScreenshots/4.png?raw=true" width="236" height="500" /> <img src="https://github.com/kirmanak/Mealient/blob/master/fastlane/metadata/android/en-US/images/phoneScreenshots/5.png?raw=true" width="236" height="500" /> <img src="https://github.com/kirmanak/Mealient/blob/master/fastlane/metadata/android/en-US/images/phoneScreenshots/6.png?raw=true" width="236" height="500" />
+```sh
+./gradlew assembleDebug        # app/build/outputs/apk/debug
+./gradlew testDebugUnitTest
+```
 
-## How to install
-
-There are three ways:
-1. Install it with Google Play using the badge above.
-2. Install it with F-droid using the badge above.
-3. Download the latest apk from the releases page.
+CI builds the debug APK on every push and attaches it to the run as the `debug-apk` artifact.
 
 ## Contribution
 
-Any contribution is greatly appreciated: translations, bug reports, feature requests and any PR.
+Bug reports and pull requests are welcome.
