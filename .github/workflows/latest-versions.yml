@@ -1,0 +1,38 @@
+name: Latest versions
+
+# Prints the newest releases of the build tooling and key libraries, for planning dependency updates.
+on:
+  workflow_dispatch:
+
+jobs:
+  versions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List versions
+        run: |
+          latest() {
+            # $1 = repo base url, $2 = group path, $3 = artifact; prints the newest non-pre-release version
+            curl -fsSL "$1/$2/$3/maven-metadata.xml" \
+              | grep -oP '(?<=<version>)[^<]+' \
+              | grep -viE 'alpha|beta|rc|dev|snapshot|eap|m[0-9]' \
+              | sort -V | tail -1
+          }
+          G=https://dl.google.com/dl/android/maven2
+          C=https://repo.maven.apache.org/maven2
+          for a in "com/android/tools/build gradle" "androidx/compose/compose-bom compose-bom" \
+                   "androidx/core core-ktx" "androidx/appcompat appcompat" "androidx/lifecycle lifecycle-viewmodel-ktx" \
+                   "androidx/room room-runtime" "androidx/paging paging-runtime" "androidx/datastore datastore-preferences" \
+                   "androidx/hilt hilt-navigation-compose" "androidx/activity activity-compose" \
+                   "androidx/navigation navigation-compose" "androidx/core core-splashscreen" "androidx/test/ext junit" \
+                   "com/google/android/material material" "androidx/compose/material3 material3"; do
+            set -- $a; printf '%-55s %s\n' "$1/$2" "$(latest $G $1 $2)"
+          done
+          for a in "org/jetbrains/kotlin kotlin-gradle-plugin" "com/google/devtools/ksp symbol-processing-gradle-plugin" \
+                   "com/google/dagger hilt-android" "io/ktor ktor-client-core" "com/squareup/okhttp3 okhttp" \
+                   "io/coil-kt coil" "org/jetbrains/kotlinx kotlinx-coroutines-core" "org/jetbrains/kotlinx kotlinx-serialization-json" \
+                   "org/jetbrains/kotlinx kotlinx-datetime" "com/google/protobuf protobuf-javalite" "io/mockk mockk" \
+                   "org/robolectric robolectric" "com/google/truth truth" "com/squareup/leakcanary leakcanary-android" \
+                   "io/github/raamcosta/compose-destinations core" "com/google/accompanist accompanist-themeadapter-material3"; do
+            set -- $a; printf '%-55s %s\n' "$1/$2" "$(latest $C $1 $2)"
+          done
+          curl -fsSL https://services.gradle.org/versions/current | grep -oP '"version"\s*:\s*"\K[^"]+' | head -1 | sed 's/^/gradle current: /'
