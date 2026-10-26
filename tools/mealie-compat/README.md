@@ -13,9 +13,10 @@ exits non-zero if any check fails. The response fixtures in
 `datasource/src/test/resources/mealie-v3` were recorded from Mealie 3.29.0, and
 `MealieV3ResponsesTest` decodes them in CI.
 
-Server-side changes this fork adapts to (Mealie v2 and later):
+Server-side changes this fork adapts to. The right column is what Mealie 3.29.0 does; the
+left is what Mealient's code expects, which matches Mealie v1:
 
-| Mealie v1 | Mealie v2+ |
+| Mealient expects (Mealie v1) | Mealie 3.29.0 |
 |---|---|
 | `/api/groups/shopping/lists`, `/api/groups/shopping/items` | `/api/households/shopping/lists`, `/api/households/shopping/items` |
 | `POST /api/recipes/create-url` | `POST /api/recipes/create/url` |

@@ -9,7 +9,7 @@
 	<string name="view_holder_recipe_text_placeholder">Carregando…</string>
 	<string name="fragment_recipe_info_ingredients_header">Ingredientes</string>
 	<string name="fragment_recipe_info_instructions_header">Instruções</string>
-	<string name="fragment_disclaimer_main_text">Este projeto é desenvolvido independentemente do projeto principal do Mealie. Ele NÃO está associado aos desenvolvedores do Mealie. Quaisquer problemas devem ser reportados ao repositório MEAL, NÃO ao repositório Mealie.</string>
+	<string name="fragment_disclaimer_main_text">Este projeto é desenvolvido independentemente do projeto principal do Mealie. Ele NÃO está associado aos desenvolvedores do Mealie. Quaisquer problemas devem ser reportados ao repositório Copperpot, NÃO ao repositório Mealie.</string>
 	<string name="fragment_baseurl_url_input_empty">O URL não pode estar vazio</string>
 	<string name="fragment_base_url_no_connection">Não é possível estabelecer ligação, verificar endereço.</string>
 	<string name="fragment_base_url_unexpected_response">Resposta inesperada. É a Mealie?</string>
@@ -71,7 +71,7 @@
 	<string name="fragment_recipes_favorite_removed">Removido %1$s dos favoritos</string>
 	<string name="menu_navigation_drawer_shopping_lists">Listas de compras</string>
 	<string name="menu_navigation_drawer_email_logs">Registos de correio eletrónico</string>
-	<string name="activity_main_email_logs_subject">Registos do MEAL</string>
+	<string name="activity_main_email_logs_subject">Registos do Copperpot</string>
 	<string name="activity_main_email_logs_confirmation_message">Os registos contêm dados sensíveis, como o token da API, listas de compras e receitas. Os tokens da API podem ser revogados através do cliente Web. O ficheiro pode ser visualizado e editado se, em vez disso, o enviar para si próprio.</string>
 	<string name="activity_main_email_logs_confirmation_title">Envio de dados sensíveis</string>
 	<string name="activity_main_email_logs_confirmation_positive">Escolher como enviar</string>

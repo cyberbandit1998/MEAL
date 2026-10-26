@@ -9,7 +9,7 @@
 	<string name="view_holder_recipe_text_placeholder">Загрузка</string>
 	<string name="fragment_recipe_info_ingredients_header">Ингредиенты</string>
 	<string name="fragment_recipe_info_instructions_header">Инструкции</string>
-	<string name="fragment_disclaimer_main_text">Этот проект разрабатывается независимо от основного проекта Meale. Он не связан с разработчиками Mealie. О любых проблемах следует писать в репозиторий MEAL, НЕ в репозиторий Mealie.</string>
+	<string name="fragment_disclaimer_main_text">Этот проект разрабатывается независимо от основного проекта Meale. Он не связан с разработчиками Mealie. О любых проблемах следует писать в репозиторий Copperpot, НЕ в репозиторий Mealie.</string>
 	<string name="fragment_baseurl_url_input_empty">URL не может быть пустым</string>
 	<string name="fragment_base_url_no_connection">Ошибка подключения, проверьте адрес.</string>
 	<string name="fragment_base_url_unexpected_response">Неожиданный ответ. Это Mealie?</string>
@@ -71,7 +71,7 @@
 	<string name="fragment_recipes_favorite_removed">%1$s удалено из избранного</string>
 	<string name="menu_navigation_drawer_shopping_lists">Списки покупок</string>
 	<string name="menu_navigation_drawer_email_logs">Журналы электронной почты</string>
-	<string name="activity_main_email_logs_subject">Журналы MEAL</string>
+	<string name="activity_main_email_logs_subject">Журналы Copperpot</string>
 	<string name="activity_main_email_logs_confirmation_message">В журналах содержатся конфиденциальные данные, такие как API-токен, списки покупок и рецепты. API-токены могут быть отозваны с помощью веб-клиента. Файл можно просматривать и редактировать, если отправить его самому себе.</string>
 	<string name="activity_main_email_logs_confirmation_title">Отправка конфиденциальных данных</string>
 	<string name="activity_main_email_logs_confirmation_positive">Выберите способ отправки</string>

@@ -9,7 +9,7 @@
 	<string name="view_holder_recipe_text_placeholder">Chargement de…</string>
 	<string name="fragment_recipe_info_ingredients_header">Ingrédients</string>
 	<string name="fragment_recipe_info_instructions_header">Instructions</string>
-	<string name="fragment_disclaimer_main_text">Ce projet est développé indépendamment du projet principal Mealie. Il n\'est PAS associé aux développeurs de Mealie. Tout problème doit être signalé au dépôt MEAL, et NON au dépôt Mealie.</string>
+	<string name="fragment_disclaimer_main_text">Ce projet est développé indépendamment du projet principal Mealie. Il n\'est PAS associé aux développeurs de Mealie. Tout problème doit être signalé au dépôt Copperpot, et NON au dépôt Mealie.</string>
 	<string name="fragment_baseurl_url_input_empty">L\'URL ne peut pas être vide</string>
 	<string name="fragment_base_url_no_connection">Impossible de se connecter, vérifier l\'adresse.</string>
 	<string name="fragment_base_url_unexpected_response">Réponse inattendue. Est-ce Mealie ?</string>
@@ -71,7 +71,7 @@
 	<string name="fragment_recipes_favorite_removed">Suppression de %1$s des favoris</string>
 	<string name="menu_navigation_drawer_shopping_lists">Listes de courses</string>
 	<string name="menu_navigation_drawer_email_logs">Journaux des courriels</string>
-	<string name="activity_main_email_logs_subject">Journaux de MEAL</string>
+	<string name="activity_main_email_logs_subject">Journaux de Copperpot</string>
 	<string name="activity_main_email_logs_confirmation_message">Les journaux contiennent des données sensibles telles que les jetons API, les listes d\'achats et les recettes. Les jetons d\'API peuvent être révoqués à l\'aide du client web. Le fichier peut être consulté et modifié si vous vous l\'envoyez à vous-même.</string>
 	<string name="activity_main_email_logs_confirmation_title">Envoi de données sensibles</string>
 	<string name="activity_main_email_logs_confirmation_positive">Choisir le mode d\'envoi</string>

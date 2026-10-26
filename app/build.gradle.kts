@@ -12,7 +12,7 @@ plugins {
 
 android {
     defaultConfig {
-        applicationId = "io.github.cyberbandit1998.meal"
+        applicationId = "io.github.cyberbandit1998.copperpot"
         versionCode = 38
         versionName = "0.5.0"
         testInstrumentationRunner = "gq.kirmanak.mealient.MealientTestRunner"

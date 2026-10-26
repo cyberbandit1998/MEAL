@@ -9,7 +9,7 @@
 	<string name="view_holder_recipe_text_placeholder">Laden…</string>
 	<string name="fragment_recipe_info_ingredients_header">Inhaltsstoffe</string>
 	<string name="fragment_recipe_info_instructions_header">Anweisungen</string>
-	<string name="fragment_disclaimer_main_text">Dieses Projekt wird unabhängig vom Mealie-Kernprojekt entwickelt. Es ist NICHT mit den Mealie-Kernentwicklern verbunden. Alle Probleme müssen an das MEAL-Repository und NICHT an das Mealie-Repository gemeldet werden.</string>
+	<string name="fragment_disclaimer_main_text">Dieses Projekt wird unabhängig vom Mealie-Kernprojekt entwickelt. Es ist NICHT mit den Mealie-Kernentwicklern verbunden. Alle Probleme müssen an das Copperpot-Repository und NICHT an das Mealie-Repository gemeldet werden.</string>
 	<string name="fragment_baseurl_url_input_empty">URL darf nicht leer sein</string>
 	<string name="fragment_base_url_no_connection">Kann keine Verbindung herstellen, Adresse prüfen.</string>
 	<string name="fragment_base_url_unexpected_response">Unerwartete Antwort. Ist es Mealie?</string>
@@ -71,7 +71,7 @@
 	<string name="fragment_recipes_favorite_removed">%1$s aus den Favoriten entfernt</string>
 	<string name="menu_navigation_drawer_shopping_lists">Einkaufslisten</string>
 	<string name="menu_navigation_drawer_email_logs">E-Mail Protokolle</string>
-	<string name="activity_main_email_logs_subject">MEAL Protokolle</string>
+	<string name="activity_main_email_logs_subject">Copperpot Protokolle</string>
 	<string name="activity_main_email_logs_confirmation_message">Die Protokolle enthalten sensible Daten, wie zum Beispiel API-Token, Einkaufslisten und Rezepte. API-Token können per Web-Client widerrufen werden. Die Datei kann angesehen und bearbeitet werden, wenn Sie sie stattdessen an sich selbst senden.</string>
 	<string name="activity_main_email_logs_confirmation_title">Sende sensible Daten</string>
 	<string name="activity_main_email_logs_confirmation_positive">Wählen Sie eine Sendemethode</string>
