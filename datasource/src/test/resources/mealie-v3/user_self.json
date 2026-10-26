@@ -1,0 +1,29 @@
+{
+ "id": "0a219149-cd0e-4146-8830-ea7f61ac3998",
+ "username": "admin",
+ "fullName": "Change Me",
+ "email": "changeme@example.com",
+ "authMethod": "Mealie",
+ "admin": true,
+ "group": "Home",
+ "household": "Family",
+ "advanced": true,
+ "showAnnouncements": true,
+ "lastReadAnnouncement": null,
+ "canInvite": true,
+ "canManage": true,
+ "canManageHousehold": true,
+ "canOrganize": true,
+ "groupId": "fafda3cb-ba52-4764-97cd-57c1af10b885",
+ "groupSlug": "home",
+ "householdId": "6b71b731-8f0e-4b10-951b-3967bfab1cc9",
+ "householdSlug": "family",
+ "tokens": [
+  {
+   "name": "MealientProbe",
+   "id": 1,
+   "createdAt": "2026-10-26T02:34:09.570369Z"
+  }
+ ],
+ "cacheKey": "1234"
+}

@@ -26,7 +26,7 @@ interface RecipeStorage {
 
     suspend fun queryRecipeInfo(recipeId: String): RecipeWithSummaryAndIngredientsAndInstructions?
 
-    suspend fun updateFavoriteRecipes(favorites: List<String>)
+    suspend fun updateFavoriteRecipes(favoriteIds: List<String>)
 
     suspend fun deleteRecipe(entity: RecipeSummaryEntity)
 }

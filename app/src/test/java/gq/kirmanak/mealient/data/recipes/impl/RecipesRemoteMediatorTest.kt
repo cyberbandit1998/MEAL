@@ -4,6 +4,8 @@ import androidx.paging.*
 import androidx.paging.LoadType.*
 import com.google.common.truth.Truth.assertThat
 import gq.kirmanak.mealient.data.recipes.network.RecipeDataSource
+import gq.kirmanak.mealient.database.CAKE_RECIPE_SUMMARY_ENTITY
+import gq.kirmanak.mealient.database.PORRIDGE_RECIPE_SUMMARY_ENTITY
 import gq.kirmanak.mealient.database.TEST_RECIPE_SUMMARY_ENTITIES
 import gq.kirmanak.mealient.database.recipe.RecipeStorage
 import gq.kirmanak.mealient.database.recipe.entity.RecipeSummaryEntity
@@ -54,7 +56,7 @@ class RecipesRemoteMediatorTest : BaseUnitTest() {
             dispatchers = dispatchers,
             modelMapper = modelMapper,
         )
-        coEvery { dataSource.getFavoriteRecipes() } returns emptyList()
+        coEvery { dataSource.getFavoriteRecipeIds() } returns emptyList()
     }
 
     @Test
@@ -148,8 +150,23 @@ class RecipesRemoteMediatorTest : BaseUnitTest() {
     }
 
     @Test
+    fun `when favorites contain recipe id expect recipe saved as favorite`() = runTest {
+        coEvery { dataSource.getFavoriteRecipeIds() } returns listOf(PORRIDGE_RECIPE_SUMMARY_ENTITY.remoteId)
+        coEvery { dataSource.requestRecipes(eq(0), eq(6)) } returns TEST_RECIPE_SUMMARIES
+        subject.load(REFRESH, pagingState())
+        coVerify {
+            storage.refreshAll(
+                listOf(
+                    CAKE_RECIPE_SUMMARY_ENTITY,
+                    PORRIDGE_RECIPE_SUMMARY_ENTITY.copy(isFavorite = true),
+                )
+            )
+        }
+    }
+
+    @Test
     fun `when recipe update requested but favorite fails expect non-zero updates`() = runTest {
-        coEvery { dataSource.getFavoriteRecipes() } throws Unauthorized(IOException())
+        coEvery { dataSource.getFavoriteRecipeIds() } throws Unauthorized(IOException())
         coEvery { dataSource.requestRecipes(eq(0), eq(6)) } returns TEST_RECIPE_SUMMARIES
         assertThat(subject.updateRecipes(0, 6, APPEND)).isEqualTo(2)
     }

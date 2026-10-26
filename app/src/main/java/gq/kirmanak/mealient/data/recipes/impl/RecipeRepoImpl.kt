@@ -96,10 +96,11 @@ class RecipeRepoImpl @Inject constructor(
     ): Result<Boolean> = runCatchingExceptCancel {
         logger.v { "updateIsRecipeFavorite() called with: recipeSlug = $recipeSlug, isFavorite = $isFavorite" }
         dataSource.updateIsRecipeFavorite(recipeSlug, isFavorite)
-        val favorites = dataSource.getFavoriteRecipes()
-        storage.updateFavoriteRecipes(favorites)
+        // The favorites endpoint reports recipe ids, not slugs. The server has accepted the change
+        // at this point, so the requested state is the actual one; the list is only used to resync.
+        storage.updateFavoriteRecipes(dataSource.getFavoriteRecipeIds())
         pagingSourceFactory.invalidate()
-        favorites.contains(recipeSlug)
+        isFavorite
     }.onFailure {
         logger.e(it) { "Can't update recipe's is favorite status" }
     }

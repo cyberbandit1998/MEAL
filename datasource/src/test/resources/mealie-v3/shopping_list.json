@@ -1,0 +1,207 @@
+{
+ "name": "Fixture list",
+ "extras": {},
+ "createdAt": "2026-10-26T02:37:08.079093Z",
+ "updatedAt": "2026-10-26T02:37:08.934062Z",
+ "groupId": "fafda3cb-ba52-4764-97cd-57c1af10b885",
+ "userId": "0a219149-cd0e-4146-8830-ea7f61ac3998",
+ "id": "a130f61f-4a9d-4e8d-9141-7462276983ad",
+ "listItems": [
+  {
+   "quantity": 1.0,
+   "unit": null,
+   "food": null,
+   "referencedRecipe": null,
+   "note": "Milk",
+   "display": "1 Milk",
+   "shoppingListId": "a130f61f-4a9d-4e8d-9141-7462276983ad",
+   "checked": false,
+   "position": 0,
+   "foodId": null,
+   "labelId": null,
+   "unitId": null,
+   "extras": {},
+   "id": "89bbd286-56c6-415d-81d3-d05540fdb6d0",
+   "groupId": "fafda3cb-ba52-4764-97cd-57c1af10b885",
+   "householdId": "6b71b731-8f0e-4b10-951b-3967bfab1cc9",
+   "label": null,
+   "recipeReferences": [],
+   "createdAt": "2026-10-26T02:37:08.112084Z",
+   "updatedAt": "2026-10-26T02:37:08.112087Z"
+  },
+  {
+   "quantity": 0.0,
+   "unit": null,
+   "food": null,
+   "referencedRecipe": null,
+   "note": "2 cups water",
+   "display": "2 cups water",
+   "shoppingListId": "a130f61f-4a9d-4e8d-9141-7462276983ad",
+   "checked": false,
+   "position": 0,
+   "foodId": null,
+   "labelId": null,
+   "unitId": null,
+   "extras": {},
+   "id": "6abd3c21-ce15-4da1-9493-090c8b8f2cb0",
+   "groupId": "fafda3cb-ba52-4764-97cd-57c1af10b885",
+   "householdId": "6b71b731-8f0e-4b10-951b-3967bfab1cc9",
+   "label": null,
+   "recipeReferences": [
+    {
+     "recipeId": "61543423-3987-404a-8267-c723444d53b4",
+     "recipeQuantity": 0.0,
+     "recipeScale": 1.0,
+     "recipeNote": "2 cups water",
+     "id": "41289846-9fee-45ed-aaab-f37106493279",
+     "shoppingListItemId": "6abd3c21-ce15-4da1-9493-090c8b8f2cb0"
+    }
+   ],
+   "createdAt": "2026-10-26T02:37:08.916910Z",
+   "updatedAt": "2026-10-26T02:37:08.916915Z"
+  },
+  {
+   "quantity": 0.0,
+   "unit": null,
+   "food": null,
+   "referencedRecipe": null,
+   "note": "1 tsp salt",
+   "display": "1 tsp salt",
+   "shoppingListId": "a130f61f-4a9d-4e8d-9141-7462276983ad",
+   "checked": false,
+   "position": 0,
+   "foodId": null,
+   "labelId": null,
+   "unitId": null,
+   "extras": {},
+   "id": "7869722f-356d-462d-bd93-15974e67c68c",
+   "groupId": "fafda3cb-ba52-4764-97cd-57c1af10b885",
+   "householdId": "6b71b731-8f0e-4b10-951b-3967bfab1cc9",
+   "label": null,
+   "recipeReferences": [
+    {
+     "recipeId": "61543423-3987-404a-8267-c723444d53b4",
+     "recipeQuantity": 0.0,
+     "recipeScale": 1.0,
+     "recipeNote": "1 tsp salt",
+     "id": "2fc7902d-e6d5-4280-861b-f6824141b6b4",
+     "shoppingListItemId": "7869722f-356d-462d-bd93-15974e67c68c"
+    }
+   ],
+   "createdAt": "2026-10-26T02:37:08.916920Z",
+   "updatedAt": "2026-10-26T02:37:08.916920Z"
+  },
+  {
+   "quantity": 5.0,
+   "unit": {
+    "id": "96a75930-0fd1-45cc-a57e-43b16496be90",
+    "name": "cup",
+    "pluralName": "cups",
+    "description": "",
+    "extras": {},
+    "fraction": true,
+    "abbreviation": "",
+    "pluralAbbreviation": "",
+    "useAbbreviation": false,
+    "aliases": [],
+    "standardQuantity": 1.0,
+    "standardUnit": "cup",
+    "createdAt": "2026-10-26T02:34:56.631427Z",
+    "updatedAt": "2026-10-26T02:34:56.631430Z"
+   },
+   "food": {
+    "id": "ef3d237a-3864-485b-9d5c-db5f14368697",
+    "name": "flour",
+    "pluralName": null,
+    "description": "",
+    "extras": {},
+    "labelId": null,
+    "aliases": [],
+    "substitutions": [],
+    "householdsWithIngredientFood": [],
+    "label": null,
+    "recipeCount": 0,
+    "createdAt": "2026-10-26T02:34:56.611177Z",
+    "updatedAt": "2026-10-26T02:34:56.611180Z"
+   },
+   "referencedRecipe": null,
+   "note": "sifted",
+   "display": "5 cups flour sifted",
+   "shoppingListId": "a130f61f-4a9d-4e8d-9141-7462276983ad",
+   "checked": false,
+   "position": 1,
+   "foodId": "ef3d237a-3864-485b-9d5c-db5f14368697",
+   "labelId": null,
+   "unitId": "96a75930-0fd1-45cc-a57e-43b16496be90",
+   "extras": {},
+   "id": "74d941a9-ae04-43f5-8e47-da0f0d666bf4",
+   "groupId": "fafda3cb-ba52-4764-97cd-57c1af10b885",
+   "householdId": "6b71b731-8f0e-4b10-951b-3967bfab1cc9",
+   "label": null,
+   "recipeReferences": [
+    {
+     "recipeId": "61543423-3987-404a-8267-c723444d53b4",
+     "recipeQuantity": 2.0,
+     "recipeScale": 1.0,
+     "recipeNote": "sifted",
+     "id": "d13f61bd-7a02-4ed1-9b4c-df9cdafd0bc2",
+     "shoppingListItemId": "74d941a9-ae04-43f5-8e47-da0f0d666bf4"
+    }
+   ],
+   "createdAt": "2026-10-26T02:37:08.140528Z",
+   "updatedAt": "2026-10-26T02:37:08.932373Z"
+  }
+ ],
+ "householdId": "6b71b731-8f0e-4b10-951b-3967bfab1cc9",
+ "recipeReferences": [
+  {
+   "id": "dfc1fb4b-9e5f-4201-b91a-b929a38e0e94",
+   "shoppingListId": "a130f61f-4a9d-4e8d-9141-7462276983ad",
+   "recipeId": "61543423-3987-404a-8267-c723444d53b4",
+   "recipeQuantity": 1.0,
+   "recipe": {
+    "id": "61543423-3987-404a-8267-c723444d53b4",
+    "userId": "0a219149-cd0e-4146-8830-ea7f61ac3998",
+    "householdId": "6b71b731-8f0e-4b10-951b-3967bfab1cc9",
+    "groupId": "fafda3cb-ba52-4764-97cd-57c1af10b885",
+    "name": "Fixture Pancakes (1)",
+    "slug": "fixture-pancakes-1",
+    "image": null,
+    "recipeServings": 0.0,
+    "recipeYieldQuantity": 0.0,
+    "recipeYield": "4 servings",
+    "totalTime": null,
+    "prepTime": null,
+    "cookTime": null,
+    "performTime": null,
+    "totalTimeSeconds": null,
+    "prepTimeSeconds": null,
+    "performTimeSeconds": null,
+    "description": "Fluffy",
+    "recipeCategory": [],
+    "tags": [],
+    "tools": [],
+    "rating": null,
+    "orgURL": null,
+    "dateAdded": "2026-10-26",
+    "dateUpdated": "2026-10-26T02:37:07.977244Z",
+    "createdAt": "2026-10-26T02:37:07.906405Z",
+    "updatedAt": "2026-10-26T02:37:07.979047Z"
+   }
+  }
+ ],
+ "labelSettings": [
+  {
+   "shoppingListId": "a130f61f-4a9d-4e8d-9141-7462276983ad",
+   "labelId": "defcac0e-6d66-43d1-ab80-a47ac88979bb",
+   "position": 0,
+   "id": "8e41fcf8-7c1f-4324-81bf-d4c01d76d8aa",
+   "label": {
+    "name": "Pantry",
+    "color": "#E0E0E0",
+    "groupId": "fafda3cb-ba52-4764-97cd-57c1af10b885",
+    "id": "defcac0e-6d66-43d1-ab80-a47ac88979bb"
+   }
+  }
+ ]
+}

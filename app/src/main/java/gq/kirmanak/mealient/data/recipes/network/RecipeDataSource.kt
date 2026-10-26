@@ -8,7 +8,8 @@ interface RecipeDataSource {
 
     suspend fun requestRecipe(slug: String): GetRecipeResponse
 
-    suspend fun getFavoriteRecipes(): List<String>
+    /** Returns ids (not slugs) of the favorite recipes. */
+    suspend fun getFavoriteRecipeIds(): List<String>
 
     suspend fun updateIsRecipeFavorite(recipeSlug: String, isFavorite: Boolean)
 

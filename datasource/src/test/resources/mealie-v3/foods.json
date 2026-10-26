@@ -1,0 +1,25 @@
+{
+ "page": 1,
+ "per_page": 100,
+ "total": 1,
+ "total_pages": 1,
+ "items": [
+  {
+   "id": "ef3d237a-3864-485b-9d5c-db5f14368697",
+   "name": "flour",
+   "pluralName": null,
+   "description": "",
+   "extras": {},
+   "labelId": null,
+   "aliases": [],
+   "substitutions": [],
+   "householdsWithIngredientFood": [],
+   "label": null,
+   "recipeCount": 1,
+   "createdAt": "2026-10-26T02:34:56.611177Z",
+   "updatedAt": "2026-10-26T02:34:56.611180Z"
+  }
+ ],
+ "next": null,
+ "previous": null
+}

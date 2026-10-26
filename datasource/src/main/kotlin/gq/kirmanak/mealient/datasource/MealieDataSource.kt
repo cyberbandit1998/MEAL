@@ -57,6 +57,11 @@ interface MealieDataSource {
 
     suspend fun requestUserInfo(): GetUserInfoResponse
 
+    /**
+     * Returns ids (not slugs) of the recipes marked as favorite by the current user.
+     */
+    suspend fun requestFavoriteRecipeIds(): List<String>
+
     suspend fun removeFavoriteRecipe(userId: String, recipeSlug: String)
 
     suspend fun addFavoriteRecipe(userId: String, recipeSlug: String)

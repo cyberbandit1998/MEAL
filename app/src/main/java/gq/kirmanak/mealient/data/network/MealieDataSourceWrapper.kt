@@ -39,8 +39,8 @@ class MealieDataSourceWrapper @Inject constructor(
         return dataSource.parseRecipeFromURL(parseRecipeURLInfo)
     }
 
-    override suspend fun getFavoriteRecipes(): List<String> {
-        return dataSource.requestUserInfo().favoriteRecipes
+    override suspend fun getFavoriteRecipeIds(): List<String> {
+        return dataSource.requestFavoriteRecipeIds()
     }
 
     override suspend fun updateIsRecipeFavorite(recipeSlug: String, isFavorite: Boolean) {

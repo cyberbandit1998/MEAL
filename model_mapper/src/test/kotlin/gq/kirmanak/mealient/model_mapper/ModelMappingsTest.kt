@@ -43,6 +43,20 @@ class ModelMappingsTest : BaseUnitTest() {
     }
 
     @Test
+    fun `when recipe has no settings expect amounts are not disabled`() {
+        val response = CAKE_RECIPE_RESPONSE.copy(settings = null)
+        assertThat(subject.toRecipeEntity(response).disableAmounts).isFalse()
+    }
+
+    @Test
+    fun `when ingredient has no legacy flags expect amounts are shown`() {
+        val response = SUGAR_RECIPE_INGREDIENT_RESPONSE.copy(isFood = false, disableAmount = false)
+        val actual = subject.toRecipeIngredientEntity(response, "1")
+        assertThat(actual.disableAmount).isFalse()
+        assertThat(actual.isFood).isFalse()
+    }
+
+    @Test
     fun `when ingredient info to entity expect correct entity`() {
         val actual = subject.toRecipeIngredientEntity(SUGAR_RECIPE_INGREDIENT_RESPONSE, "1")
         assertThat(actual).isEqualTo(CAKE_SUGAR_RECIPE_INGREDIENT_ENTITY)

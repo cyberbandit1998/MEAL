@@ -70,12 +70,12 @@ class RecipesRemoteMediator @Inject constructor(
         logger.v { "updateRecipes() called with: start = $start, limit = $limit, loadType = $loadType" }
         val deferredRecipes = async { network.requestRecipes(start, limit) }
         val favorites = runCatchingExceptCancel {
-            network.getFavoriteRecipes()
+            network.getFavoriteRecipeIds()
         }.getOrDefault(emptyList()).toHashSet()
         val recipes = deferredRecipes.await()
         val entities = withContext(dispatchers.default) {
             recipes.map { recipe ->
-                val isFavorite = favorites.contains(recipe.slug)
+                val isFavorite = favorites.contains(recipe.remoteId)
                 modelMapper.toRecipeSummaryEntity(recipe, isFavorite)
             }
         }

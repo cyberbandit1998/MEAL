@@ -1,0 +1,136 @@
+{
+ "id": "61543423-3987-404a-8267-c723444d53b4",
+ "userId": "0a219149-cd0e-4146-8830-ea7f61ac3998",
+ "householdId": "6b71b731-8f0e-4b10-951b-3967bfab1cc9",
+ "groupId": "fafda3cb-ba52-4764-97cd-57c1af10b885",
+ "name": "Fixture Pancakes (1)",
+ "slug": "fixture-pancakes-1",
+ "image": null,
+ "recipeServings": 0.0,
+ "recipeYieldQuantity": 0.0,
+ "recipeYield": "4 servings",
+ "totalTime": null,
+ "prepTime": null,
+ "cookTime": null,
+ "performTime": null,
+ "totalTimeSeconds": null,
+ "prepTimeSeconds": null,
+ "performTimeSeconds": null,
+ "description": "Fluffy",
+ "recipeCategory": [],
+ "tags": [],
+ "tools": [],
+ "rating": null,
+ "orgURL": null,
+ "dateAdded": "2026-10-26",
+ "dateUpdated": "2026-10-26T02:37:07.977244Z",
+ "createdAt": "2026-10-26T02:37:07.906405Z",
+ "updatedAt": "2026-10-26T02:37:07.979047Z",
+ "recipeIngredient": [
+  {
+   "quantity": null,
+   "unit": null,
+   "food": null,
+   "referencedRecipe": null,
+   "note": "2 cups water",
+   "display": "2 cups water",
+   "title": null,
+   "originalText": null,
+   "substitutions": [],
+   "referenceId": "11111111-1111-4111-8111-111111111111"
+  },
+  {
+   "quantity": 2.0,
+   "unit": {
+    "id": "96a75930-0fd1-45cc-a57e-43b16496be90",
+    "name": "cup",
+    "pluralName": "cups",
+    "description": "",
+    "extras": {},
+    "fraction": true,
+    "abbreviation": "",
+    "pluralAbbreviation": "",
+    "useAbbreviation": false,
+    "aliases": [],
+    "standardQuantity": 1.0,
+    "standardUnit": "cup",
+    "createdAt": "2026-10-26T02:34:56.631427Z",
+    "updatedAt": "2026-10-26T02:34:56.631430Z"
+   },
+   "food": {
+    "id": "ef3d237a-3864-485b-9d5c-db5f14368697",
+    "name": "flour",
+    "pluralName": null,
+    "description": "",
+    "extras": {},
+    "labelId": null,
+    "aliases": [],
+    "substitutions": [],
+    "householdsWithIngredientFood": [],
+    "label": null,
+    "recipeCount": 0,
+    "createdAt": "2026-10-26T02:34:56.611177Z",
+    "updatedAt": "2026-10-26T02:34:56.611180Z"
+   },
+   "referencedRecipe": null,
+   "note": "sifted",
+   "display": "2 cups flour sifted",
+   "title": null,
+   "originalText": null,
+   "substitutions": [],
+   "referenceId": "22222222-2222-4222-8222-222222222222"
+  },
+  {
+   "quantity": null,
+   "unit": null,
+   "food": null,
+   "referencedRecipe": null,
+   "note": "1 tsp salt",
+   "display": "1 tsp salt",
+   "title": "Sauce",
+   "originalText": null,
+   "substitutions": [],
+   "referenceId": "33333333-3333-4333-8333-333333333333"
+  }
+ ],
+ "recipeInstructions": [
+  {
+   "id": "cb816a52-88a6-49e9-a5d7-5791598ff4e6",
+   "title": null,
+   "summary": null,
+   "text": "Mix",
+   "ingredientReferences": [
+    {
+     "referenceId": "22222222-2222-4222-8222-222222222222"
+    }
+   ],
+   "noteReferences": [],
+   "durationSeconds": null
+  }
+ ],
+ "nutrition": {
+  "calories": null,
+  "carbohydrateContent": null,
+  "cholesterolContent": null,
+  "fatContent": null,
+  "fiberContent": null,
+  "proteinContent": null,
+  "saturatedFatContent": null,
+  "sodiumContent": null,
+  "sugarContent": null,
+  "transFatContent": null,
+  "unsaturatedFatContent": null
+ },
+ "settings": {
+  "public": false,
+  "showNutrition": false,
+  "showAssets": false,
+  "landscapeView": false,
+  "disableComments": false,
+  "locked": false
+ },
+ "assets": [],
+ "notes": [],
+ "extras": {},
+ "comments": []
+}

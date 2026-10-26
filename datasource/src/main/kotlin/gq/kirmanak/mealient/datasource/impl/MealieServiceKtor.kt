@@ -7,6 +7,7 @@ import gq.kirmanak.mealient.datasource.models.CreateApiTokenResponse
 import gq.kirmanak.mealient.datasource.models.CreateRecipeRequest
 import gq.kirmanak.mealient.datasource.models.CreateShoppingListItemRequest
 import gq.kirmanak.mealient.datasource.models.CreateShoppingListRequest
+import gq.kirmanak.mealient.datasource.models.GetFavoritesResponse
 import gq.kirmanak.mealient.datasource.models.GetFoodsResponse
 import gq.kirmanak.mealient.datasource.models.GetRecipeResponse
 import gq.kirmanak.mealient.datasource.models.GetRecipesResponse
@@ -100,7 +101,7 @@ internal class MealieServiceKtor @Inject constructor(
 
     override suspend fun createRecipeFromURL(request: ParseRecipeURLRequest): String {
         return httpClient.post {
-            endpoint("/api/recipes/create-url")
+            endpoint("/api/recipes/create/url")
             contentType(ContentType.Application.Json)
             setBody(request)
         }.body()
@@ -117,6 +118,12 @@ internal class MealieServiceKtor @Inject constructor(
     override suspend fun getUserSelfInfo(): GetUserInfoResponse {
         return httpClient.get {
             endpoint("/api/users/self")
+        }.body()
+    }
+
+    override suspend fun getFavoriteRecipes(): GetFavoritesResponse {
+        return httpClient.get {
+            endpoint("/api/users/self/favorites")
         }.body()
     }
 
@@ -140,7 +147,7 @@ internal class MealieServiceKtor @Inject constructor(
 
     override suspend fun getShoppingLists(page: Int, perPage: Int): GetShoppingListsResponse {
         return httpClient.get {
-            endpoint("/api/groups/shopping/lists") {
+            endpoint("/api/households/shopping/lists") {
                 parameters.append("page", page.toString())
                 parameters.append("perPage", perPage.toString())
             }
@@ -149,19 +156,19 @@ internal class MealieServiceKtor @Inject constructor(
 
     override suspend fun getShoppingList(id: String): GetShoppingListResponse {
         return httpClient.get {
-            endpoint("/api/groups/shopping/lists/$id")
+            endpoint("/api/households/shopping/lists/$id")
         }.body()
     }
 
     override suspend fun getShoppingListItem(id: String): JsonElement {
         return httpClient.get {
-            endpoint("/api/groups/shopping/items/$id")
+            endpoint("/api/households/shopping/items/$id")
         }.body()
     }
 
     override suspend fun updateShoppingListItem(id: String, request: JsonElement) {
         httpClient.put {
-            endpoint("/api/groups/shopping/items/$id")
+            endpoint("/api/households/shopping/items/$id")
             contentType(ContentType.Application.Json)
             setBody(request)
         }
@@ -169,7 +176,7 @@ internal class MealieServiceKtor @Inject constructor(
 
     override suspend fun deleteShoppingListItem(id: String) {
         httpClient.delete {
-            endpoint("/api/groups/shopping/items/$id")
+            endpoint("/api/households/shopping/items/$id")
         }
     }
 
@@ -191,7 +198,7 @@ internal class MealieServiceKtor @Inject constructor(
 
     override suspend fun createShoppingListItem(request: CreateShoppingListItemRequest) {
         httpClient.post {
-            endpoint("/api/groups/shopping/items")
+            endpoint("/api/households/shopping/items")
             contentType(ContentType.Application.Json)
             setBody(request)
         }
@@ -199,7 +206,7 @@ internal class MealieServiceKtor @Inject constructor(
 
     override suspend fun createShoppingList(request: CreateShoppingListRequest) {
         httpClient.post {
-            endpoint("/api/groups/shopping/lists")
+            endpoint("/api/households/shopping/lists")
             contentType(ContentType.Application.Json)
             setBody(request)
         }
@@ -207,13 +214,13 @@ internal class MealieServiceKtor @Inject constructor(
 
     override suspend fun deleteShoppingList(id: String) {
         httpClient.delete {
-            endpoint("/api/groups/shopping/lists/$id")
+            endpoint("/api/households/shopping/lists/$id")
         }
     }
 
     override suspend fun updateShoppingList(id: String, request: JsonElement) {
         httpClient.put {
-            endpoint("/api/groups/shopping/lists/$id")
+            endpoint("/api/households/shopping/lists/$id")
             contentType(ContentType.Application.Json)
             setBody(request)
         }
@@ -221,7 +228,7 @@ internal class MealieServiceKtor @Inject constructor(
 
     override suspend fun getShoppingListJson(id: String): JsonElement {
         return httpClient.get {
-            endpoint("/api/groups/shopping/lists/$id")
+            endpoint("/api/households/shopping/lists/$id")
         }.body()
     }
 

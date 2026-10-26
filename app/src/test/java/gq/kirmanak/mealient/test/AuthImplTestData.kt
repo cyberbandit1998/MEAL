@@ -10,7 +10,7 @@ object AuthImplTestData {
     const val TEST_TOKEN = "TEST_TOKEN"
     const val TEST_API_TOKEN = "TEST_API_TOKEN"
 
-    val FAVORITE_RECIPES_LIST = listOf("cake", "porridge")
-    val USER_INFO = GetUserInfoResponse("userId", FAVORITE_RECIPES_LIST)
+    val FAVORITE_RECIPE_IDS = listOf("cake-id", "porridge-id")
+    val USER_INFO = GetUserInfoResponse("userId")
     val VERSION_RESPONSE = VersionResponse("1.0.0")
 }

@@ -119,6 +119,14 @@ internal class MealieDataSourceImpl @Inject constructor(
         )
     }
 
+    override suspend fun requestFavoriteRecipeIds(): List<String> {
+        val response = networkRequestWrapper.makeCallAndHandleUnauthorized(
+            block = { service.getFavoriteRecipes() },
+            logMethod = { "requestFavoriteRecipeIds" },
+        )
+        return response.ratings.filter { it.isFavorite }.map { it.recipeId }
+    }
+
     override suspend fun removeFavoriteRecipe(
         userId: String,
         recipeSlug: String,

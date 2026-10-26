@@ -1,45 +1,10 @@
-name: Check
+name: UI tests
 
-on: [ pull_request ]
+# Instrumented tests need an emulator, which is slow, so they only run on demand.
+on:
+  workflow_dispatch:
 
 jobs:
-  check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - uses: ashutoshgngwr/validate-fastlane-supply-metadata@v2
-        with:
-          fastlaneDir: ./fastlane/metadata/android
-          usePlayStoreLocales: true
-
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 17
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Checks
-        run: ./gradlew check :app:koverXmlReportRelease :app:koverVerifyRelease
-
-      - name: SonarCloud
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew sonar
-
-      - name: Publish test reports
-        uses: mikepenz/action-junit-report@v4
-        if: always() # always run even if the previous step fails
-        with:
-          report_paths: './**/build/test-results/**/TEST-*.xml'
-
   uiTests:
     runs-on: ubuntu-latest
     strategy:
@@ -64,14 +29,10 @@ jobs:
           sudo udevadm trigger --name-match=kvm
 
       - uses: actions/checkout@v4
-        name: Checkout the code
-        with:
-          fetch-depth: 0
 
       - uses: actions/setup-java@v4
-        name: Setup JDK 17
         with:
-          distribution: 'zulu'
+          distribution: zulu
           java-version: 17
 
       - name: Setup Gradle

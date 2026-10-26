@@ -59,11 +59,11 @@ internal interface RecipeDao {
     @Query("DELETE FROM recipe_ingredient_to_instruction WHERE recipe_id IN (:recipeIds)")
     suspend fun deleteRecipeIngredientToInstructions(vararg recipeIds: String)
 
-    @Query("UPDATE recipe_summaries SET recipe_summaries_is_favorite = 1 WHERE recipe_summaries_slug IN (:favorites)")
-    suspend fun setFavorite(favorites: List<String>)
+    @Query("UPDATE recipe_summaries SET recipe_summaries_is_favorite = 1 WHERE recipe_id IN (:favoriteIds)")
+    suspend fun setFavorite(favoriteIds: List<String>)
 
-    @Query("UPDATE recipe_summaries SET recipe_summaries_is_favorite = 0 WHERE recipe_summaries_slug NOT IN (:favorites)")
-    suspend fun setNonFavorite(favorites: List<String>)
+    @Query("UPDATE recipe_summaries SET recipe_summaries_is_favorite = 0 WHERE recipe_id NOT IN (:favoriteIds)")
+    suspend fun setNonFavorite(favoriteIds: List<String>)
 
     @Delete
     suspend fun deleteRecipe(entity: RecipeSummaryEntity)

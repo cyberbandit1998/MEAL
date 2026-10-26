@@ -119,6 +119,7 @@ private val RecipeIngredientEntity.textAndNote: Pair<String, String>
                 display
             }
 
-            text to note
+            // Mealie v2+ uses the note itself as the display text of a note-only ingredient
+            if (text.isBlank()) note to "" else text to note
         }
     }

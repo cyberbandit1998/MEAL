@@ -15,20 +15,22 @@ data class GetRecipeResponse(
 
 @Serializable
 data class GetRecipeSettingsResponse(
-    @SerialName("disableAmount") val disableAmount: Boolean,
+    // Mealie v2 removed this setting, so it must not be required.
+    @SerialName("disableAmount") val disableAmount: Boolean = false,
 )
 
 @Serializable
 data class GetRecipeIngredientResponse(
     @SerialName("note") val note: String = "",
-    @SerialName("unit") val unit: GetUnitResponse?,
-    @SerialName("food") val food: GetFoodResponse?,
-    @SerialName("quantity") val quantity: Double?,
+    @SerialName("unit") val unit: GetUnitResponse? = null,
+    @SerialName("food") val food: GetFoodResponse? = null,
+    @SerialName("quantity") val quantity: Double? = null,
     @SerialName("display") val display: String,
     @SerialName("referenceId") val referenceId: String,
-    @SerialName("title") val title: String?,
-    @SerialName("isFood") val isFood: Boolean,
-    @SerialName("disableAmount") val disableAmount: Boolean,
+    @SerialName("title") val title: String? = null,
+    // Mealie v2 removed both of the flags below, so they must not be required.
+    @SerialName("isFood") val isFood: Boolean = false,
+    @SerialName("disableAmount") val disableAmount: Boolean = false,
 )
 
 @Serializable

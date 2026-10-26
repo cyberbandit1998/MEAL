@@ -11,7 +11,7 @@ import gq.kirmanak.mealient.datasource_test.PORRIDGE_UPDATE_RECIPE_REQUEST
 import gq.kirmanak.mealient.datasource_test.RECIPE_SUMMARY_PORRIDGE
 import gq.kirmanak.mealient.model_mapper.ModelMapper
 import gq.kirmanak.mealient.model_mapper.ModelMapperImpl
-import gq.kirmanak.mealient.test.AuthImplTestData.FAVORITE_RECIPES_LIST
+import gq.kirmanak.mealient.test.AuthImplTestData.FAVORITE_RECIPE_IDS
 import gq.kirmanak.mealient.test.AuthImplTestData.TEST_TOKEN
 import gq.kirmanak.mealient.test.AuthImplTestData.USER_INFO
 import gq.kirmanak.mealient.test.BaseUnitTest
@@ -41,6 +41,7 @@ class MealieDataSourceWrapperTest : BaseUnitTest() {
         super.setUp()
         subject = MealieDataSourceWrapper(dataSource, modelMapper)
         coEvery { dataSource.requestUserInfo() } returns USER_INFO
+        coEvery { dataSource.requestFavoriteRecipeIds() } returns FAVORITE_RECIPE_IDS
     }
 
     @Test
@@ -127,12 +128,12 @@ class MealieDataSourceWrapperTest : BaseUnitTest() {
 
     @Test
     fun `when get favorite recipes expect correct call`() = runTest {
-        subject.getFavoriteRecipes()
-        coVerify { dataSource.requestUserInfo() }
+        subject.getFavoriteRecipeIds()
+        coVerify { dataSource.requestFavoriteRecipeIds() }
     }
 
     @Test
     fun `when get favorite recipes expect correct result`() = runTest {
-        assertThat(subject.getFavoriteRecipes()).isEqualTo(FAVORITE_RECIPES_LIST)
+        assertThat(subject.getFavoriteRecipeIds()).isEqualTo(FAVORITE_RECIPE_IDS)
     }
 }

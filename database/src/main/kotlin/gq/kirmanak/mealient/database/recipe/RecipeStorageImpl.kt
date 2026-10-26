@@ -70,11 +70,11 @@ internal class RecipeStorageImpl @Inject constructor(
         return fullRecipeInfo
     }
 
-    override suspend fun updateFavoriteRecipes(favorites: List<String>) {
-        logger.v { "updateFavoriteRecipes() called with: favorites = $favorites" }
+    override suspend fun updateFavoriteRecipes(favoriteIds: List<String>) {
+        logger.v { "updateFavoriteRecipes() called with: favoriteIds = $favoriteIds" }
         db.withTransaction {
-            recipeDao.setFavorite(favorites)
-            recipeDao.setNonFavorite(favorites)
+            recipeDao.setFavorite(favoriteIds)
+            recipeDao.setNonFavorite(favoriteIds)
         }
     }
 

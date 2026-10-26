@@ -1,9 +1,8 @@
 name: Sign
 
+# Needs the signing secrets below, so it only runs on demand.
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
 
 jobs:
   sign:
@@ -54,8 +53,3 @@ jobs:
           path: |
             mealient-release.apk
             mealient-release.aab
-
-      - name: SonarCloud
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew sonar
