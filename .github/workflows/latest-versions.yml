@@ -1,6 +1,9 @@
 name: Latest versions
 
-# Prints the newest releases of the build tooling and key libraries, for planning dependency updates.
+# Planning tool for dependency updates, run on demand. Google's Maven host is only reachable from
+# GitHub's runners. Prints, for each AndroidX/Google artifact, its newest stable versions together
+# with the compileSdk and AGP they require (read from the AAR), because a library that needs a newer
+# compileSdk than the project has fails the build.
 on:
   workflow_dispatch:
 
@@ -8,31 +11,44 @@ jobs:
   versions:
     runs-on: ubuntu-latest
     steps:
-      - name: List versions
+      - name: Android Gradle Plugin 8.x and Compose BOM
         run: |
-          latest() {
-            # $1 = repo base url, $2 = group path, $3 = artifact; prints the newest non-pre-release version
-            curl -fsSL "$1/$2/$3/maven-metadata.xml" \
-              | grep -oP '(?<=<version>)[^<]+' \
-              | grep -viE 'alpha|beta|rc|dev|snapshot|eap|m[0-9]' \
-              | sort -V | tail -1
-          }
           G=https://dl.google.com/dl/android/maven2
-          C=https://repo.maven.apache.org/maven2
-          for a in "com/android/tools/build gradle" "androidx/compose/compose-bom compose-bom" \
-                   "androidx/core core-ktx" "androidx/appcompat appcompat" "androidx/lifecycle lifecycle-viewmodel-ktx" \
-                   "androidx/room room-runtime" "androidx/paging paging-runtime" "androidx/datastore datastore-preferences" \
-                   "androidx/hilt hilt-navigation-compose" "androidx/activity activity-compose" \
-                   "androidx/navigation navigation-compose" "androidx/core core-splashscreen" "androidx/test/ext junit" \
-                   "com/google/android/material material" "androidx/compose/material3 material3"; do
-            set -- $a; printf '%-55s %s\n' "$1/$2" "$(latest $G $1 $2)"
+          stable() { grep -oP '(?<=<version>)[^<]+' | grep -viE 'alpha|beta|rc|dev|snapshot|eap'; }
+          echo "== AGP stable 8.x"
+          curl -fsSL "$G/com/android/tools/build/gradle/maven-metadata.xml" | stable | grep '^8\.' | sort -V | tail -12 | tr '\n' ' '; echo
+          echo "== Compose BOM (last 14) with the library versions each one pins"
+          for v in $(curl -fsSL "$G/androidx/compose/compose-bom/maven-metadata.xml" | stable | sort -V | tail -14); do
+            pom=$(curl -fsSL "$G/androidx/compose/compose-bom/$v/compose-bom-$v.pom")
+            pick() { echo "$pom" | grep -A1 "<artifactId>$1</artifactId>" | grep -oP '(?<=<version>)[^<]+' | head -1; }
+            printf 'BOM %-12s material3=%-8s ui=%-8s material(M2)=%-8s foundation=%s\n' "$v" "$(pick material3)" "$(pick ui)" "$(pick material)" "$(pick foundation)"
           done
-          for a in "org/jetbrains/kotlin kotlin-gradle-plugin" "com/google/devtools/ksp symbol-processing-gradle-plugin" \
-                   "com/google/dagger hilt-android" "io/ktor ktor-client-core" "com/squareup/okhttp3 okhttp" \
-                   "io/coil-kt coil" "org/jetbrains/kotlinx kotlinx-coroutines-core" "org/jetbrains/kotlinx kotlinx-serialization-json" \
-                   "org/jetbrains/kotlinx kotlinx-datetime" "com/google/protobuf protobuf-javalite" "io/mockk mockk" \
-                   "org/robolectric robolectric" "com/google/truth truth" "com/squareup/leakcanary leakcanary-android" \
-                   "io/github/raamcosta/compose-destinations core" "com/google/accompanist accompanist-themeadapter-material3"; do
-            set -- $a; printf '%-55s %s\n' "$1/$2" "$(latest $C $1 $2)"
+
+      - name: AndroidX and Google artifacts
+        run: |
+          G=https://dl.google.com/dl/android/maven2
+          stable() { grep -oP '(?<=<version>)[^<]+' | grep -viE 'alpha|beta|rc|dev|snapshot|eap'; }
+          meta() {
+            # prints the build requirements recorded in the AAR of group/artifact version
+            local path="$1/$2/$3/$2-$3.aar"
+            if curl -fsSL -o /tmp/x.aar "$G/$path" 2>/dev/null; then
+              unzip -p /tmp/x.aar META-INF/com/android/build/gradle/aar-metadata.properties 2>/dev/null \
+                | grep -E '^(minCompileSdk|minAgpVersion)=' | tr '\n' ' '
+            else
+              printf '(no aar; kotlin multiplatform or jar)'
+            fi
+          }
+          for a in "androidx/core core-ktx" "androidx/appcompat appcompat" "androidx/lifecycle lifecycle-viewmodel-ktx" \
+                   "androidx/lifecycle lifecycle-viewmodel-compose" "androidx/activity activity-compose" \
+                   "androidx/room room-runtime" "androidx/paging paging-runtime-ktx" "androidx/paging paging-compose" \
+                   "androidx/datastore datastore-preferences" "androidx/hilt hilt-navigation-compose" \
+                   "androidx/core core-splashscreen" "androidx/sharetarget sharetarget" "androidx/security security-crypto" \
+                   "com/google/android/material material" "androidx/test/ext junit-ktx" "androidx/test core" \
+                   "androidx/test rules" "androidx/test runner" "androidx/test orchestrator" "androidx/arch/core core-testing" \
+                   "androidx/compose/material material"; do
+            set -- $a
+            echo "== $1/$2"
+            for v in $(curl -fsSL "$G/$1/$2/maven-metadata.xml" | stable | sort -V | tail -5); do
+              printf '   %-10s %s\n' "$v" "$(meta "$1" "$2" "$v")"
+            done
           done
-          curl -fsSL https://services.gradle.org/versions/current | grep -oP '"version"\s*:\s*"\K[^"]+' | head -1 | sed 's/^/gradle current: /'

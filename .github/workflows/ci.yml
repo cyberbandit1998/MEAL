@@ -38,11 +38,28 @@ jobs:
         with:
           report_paths: './**/build/test-results/**/TEST-*.xml'
 
+      - name: Verify APK identity
+        # The package id, label and provider authority must differ from Mealient so both can be installed
+        run: |
+          set -eu
+          APK=$(ls app/build/outputs/apk/debug/*.apk | head -n1)
+          AAPT2=$(ls -d "$ANDROID_HOME"/build-tools/*/aapt2 | sort -V | tail -n1)
+          "$AAPT2" dump badging "$APK" > badging.txt
+          "$AAPT2" dump xmltree --file AndroidManifest.xml "$APK" > manifest.txt
+          grep -E "^(package|sdkVersion|targetSdkVersion|application-label:|application-icon|launchable-activity)" badging.txt
+          grep -E "authorities|<permission|uses-permission" manifest.txt || true
+          grep -q "^package: name='io.github.cyberbandit1998.copperpot'" badging.txt
+          grep -q "application-label.*Copperpot" badging.txt
+          if grep -q "gq.kirmanak.mealient.provider" manifest.txt; then
+            echo "A provider authority still uses Mealient's id"; exit 1
+          fi
+          cp "$APK" "copperpot-debug-${GITHUB_SHA::7}.apk"
+
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: debug-apk
-          path: app/build/outputs/apk/debug/*.apk
+          name: copperpot-debug-apk
+          path: copperpot-debug-*.apk
 
       - name: Upload test reports
         uses: actions/upload-artifact@v4
