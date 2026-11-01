@@ -2,9 +2,9 @@
 # https://maven.google.com/web/index.html?q=com.android.tools.build#com.android.tools.build:gradle
 androidGradlePlugin = "8.13.2"
 # https://github.com/JetBrains/kotlin/releases
-kotlin = "2.0.10"
+kotlin = "2.2.21"
 # https://dagger.dev/hilt/gradle-setup
-hilt = "2.52"
+hilt = "2.57.2"
 # https://github.com/protocolbuffers/protobuf/releases
 protobuf = "4.27.3"
 # https://github.com/google/protobuf-gradle-plugin/releases
@@ -54,7 +54,7 @@ chucker = "4.0.0"
 # https://github.com/google/desugar_jdk_libs/blob/master/CHANGELOG.md
 desugar = "2.1.2"
 # https://github.com/google/ksp/releases
-kspPlugin = "2.0.10-1.0.24"
+kspPlugin = "2.2.21-2.0.5"
 # https://developer.android.com/jetpack/androidx/releases/sharetarget
 shareTarget = "1.2.0"
 # https://github.com/KasperskyLab/Kaspresso/releases
