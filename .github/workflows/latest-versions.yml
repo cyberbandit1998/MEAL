@@ -65,3 +65,32 @@ jobs:
           for v in 8.14.3 8.14.6; do
             printf 'gradle-%s-bin.zip sha256: ' "$v"; curl -fsSL "https://services.gradle.org/distributions/gradle-$v-bin.zip.sha256"; echo
           done
+
+      - name: Requirements of specific candidates
+        # Direct dependencies matter as much as the library itself: a newer androidx.core or Compose pulled in
+        # transitively raises the compileSdk the whole app needs.
+        run: |
+          G=https://dl.google.com/dl/android/maven2
+          show() {
+            local g="$1" a="$2" v="$3" base="$G/$1/$2/$3/$2-$3"
+            printf '== %s:%s:%s  ' "${g//\//.}" "$a" "$v"
+            if curl -fsSL -o /tmp/c.aar "$base.aar" 2>/dev/null; then
+              unzip -p /tmp/c.aar META-INF/com/android/build/gradle/aar-metadata.properties 2>/dev/null | grep -E '^minCompileSdk=' | tr '\n' ' '
+            else printf '(no aar) '; fi; echo
+            curl -fsSL "$base.pom" 2>/dev/null | tr -d '\n' | grep -oP '<dependency>.*?</dependency>' \
+              | grep -E 'androidx|material' | grep -vE '<scope>test|<optional>true' \
+              | sed -E 's#<dependency><groupId>([^<]+)</groupId><artifactId>([^<]+)</artifactId>(<version>([^<]+)</version>)?.*#      \1:\2:\4#' | sort -u
+          }
+          for c in "androidx/appcompat appcompat 1.7.1" "androidx/appcompat appcompat 1.8.0" \
+                   "com/google/android/material material 1.12.0" "com/google/android/material material 1.13.0" \
+                   "androidx/paging paging-compose-android 3.3.6" "androidx/paging paging-compose-android 3.4.2" "androidx/paging paging-compose-android 3.5.3" \
+                   "androidx/paging paging-runtime-android 3.5.3" \
+                   "androidx/room room-runtime-android 2.8.5" "androidx/room room-paging-android 2.8.5" "androidx/room room-ktx 2.8.5" \
+                   "androidx/datastore datastore-preferences-android 1.3.0" "androidx/datastore datastore-core-android 1.3.0" \
+                   "androidx/lifecycle lifecycle-viewmodel-compose-android 2.8.7" "androidx/lifecycle lifecycle-viewmodel-android 2.8.7" \
+                   "androidx/compose/ui ui-android 1.7.8" "androidx/compose/ui ui-android 1.8.3" "androidx/compose/ui ui-android 1.9.1" \
+                   "androidx/compose/material3 material3-android 1.3.1" "androidx/compose/material3 material3-android 1.3.2" \
+                   "androidx/compose/foundation foundation-android 1.7.8" "androidx/compose/foundation foundation-android 1.8.3" \
+                   "androidx/hilt hilt-navigation-compose 1.2.0" "androidx/navigation navigation-compose-android 2.8.9"; do
+            set -- $c; show "$1" "$2" "$3"
+          done
