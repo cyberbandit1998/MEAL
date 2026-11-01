@@ -37,6 +37,8 @@ class RecipeInfoViewModelTest : BaseUnitTest() {
     @Before
     override fun setUp() {
         super.setUp()
+        // The view model loads the recipe as soon as it is created, so every test needs an answer
+        coEvery { recipeRepo.loadRecipeInfo(any()) } returns null
         every { keepScreenOnStorage.isKeepScreenOnFlow } returns flowOf(true)
         coEvery { keepScreenOnStorage.setKeepScreenOn(any()) } just Runs
     }
