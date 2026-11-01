@@ -6,7 +6,7 @@ kotlin = "2.2.21"
 # https://dagger.dev/hilt/gradle-setup
 hilt = "2.57.2"
 # https://github.com/protocolbuffers/protobuf/releases
-protobuf = "4.27.3"
+protobuf = "4.36.2"
 # https://github.com/google/protobuf-gradle-plugin/releases
 protobufPlugin = "0.9.4"
 # https://plugins.gradle.org/plugin/org.sonarqube
