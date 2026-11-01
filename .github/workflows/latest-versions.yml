@@ -17,8 +17,8 @@ jobs:
           stable() { grep -oP '(?<=<version>)[^<]+' | grep -viE 'alpha|beta|rc|dev|snapshot|eap'; }
           echo "== AGP stable 8.x"
           curl -fsSL "$G/com/android/tools/build/gradle/maven-metadata.xml" | stable | grep '^8\.' | sort -V | tail -12 | tr '\n' ' '; echo
-          echo "== Compose BOM (last 14) with the library versions each one pins"
-          for v in $(curl -fsSL "$G/androidx/compose/compose-bom/maven-metadata.xml" | stable | sort -V | tail -14); do
+          echo "== Compose BOM 2024.10 .. 2025.12 with the library versions each one pins"
+          for v in $(curl -fsSL "$G/androidx/compose/compose-bom/maven-metadata.xml" | stable | sort -V | grep -E '^(2024\.(1[0-2])|2025\.)'); do
             pom=$(curl -fsSL "$G/androidx/compose/compose-bom/$v/compose-bom-$v.pom")
             pick() { echo "$pom" | grep -A1 "<artifactId>$1</artifactId>" | grep -oP '(?<=<version>)[^<]+' | head -1; }
             printf 'BOM %-12s material3=%-8s ui=%-8s material(M2)=%-8s foundation=%s\n' "$v" "$(pick material3)" "$(pick ui)" "$(pick material)" "$(pick foundation)"
@@ -45,10 +45,23 @@ jobs:
                    "androidx/core core-splashscreen" "androidx/sharetarget sharetarget" "androidx/security security-crypto" \
                    "com/google/android/material material" "androidx/test/ext junit-ktx" "androidx/test core" \
                    "androidx/test rules" "androidx/test runner" "androidx/test orchestrator" "androidx/arch/core core-testing" \
-                   "androidx/compose/material material"; do
+                   "androidx/compose/material material" \
+                   "androidx/room room-runtime-android" "androidx/room room-ktx" "androidx/room room-paging" \
+                   "androidx/datastore datastore-android" "androidx/datastore datastore-core-android" \
+                   "androidx/datastore datastore-preferences-android" "androidx/paging paging-common-android" \
+                   "androidx/paging paging-runtime" "androidx/lifecycle lifecycle-viewmodel-android" \
+                   "androidx/lifecycle lifecycle-viewmodel-compose-android" "androidx/lifecycle lifecycle-runtime-android" \
+                   "androidx/lifecycle lifecycle-livedata" "androidx/navigation navigation-compose" \
+                   "androidx/compose/runtime runtime-livedata"; do
             set -- $a
             echo "== $1/$2"
-            for v in $(curl -fsSL "$G/$1/$2/maven-metadata.xml" | stable | sort -V | tail -5); do
+            for v in $(curl -fsSL "$G/$1/$2/maven-metadata.xml" | stable | sort -V | tail -8); do
               printf '   %-10s %s\n' "$v" "$(meta "$1" "$2" "$v")"
             done
+          done
+
+      - name: Gradle distribution checksums
+        run: |
+          for v in 8.14.3 8.14.6; do
+            printf 'gradle-%s-bin.zip sha256: ' "$v"; curl -fsSL "https://services.gradle.org/distributions/gradle-$v-bin.zip.sha256"; echo
           done
