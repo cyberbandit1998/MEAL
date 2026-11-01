@@ -91,10 +91,10 @@ jobs:
                    "androidx/compose/ui ui-android 1.7.8" "androidx/compose/ui ui-android 1.8.3" "androidx/compose/ui ui-android 1.9.1" \
                    "androidx/compose/material3 material3-android 1.3.1" "androidx/compose/material3 material3-android 1.3.2" \
                    "androidx/compose/foundation foundation-android 1.7.8" "androidx/compose/foundation foundation-android 1.8.3" \
-                   "androidx/hilt hilt-navigation-compose 1.2.0" "androidx/navigation navigation-compose-android 2.8.9" \\
-                   "androidx/tracing tracing-android 2.0.1" "androidx/sqlite sqlite-android 2.6.2" \\
-                   "androidx/sqlite sqlite-framework-android 2.6.2" "androidx/annotation annotation-experimental 1.5.0" \\
-                   "androidx/datastore datastore-core-android 1.2.1" "androidx/datastore datastore-core-android 1.1.7" \\
+                   "androidx/hilt hilt-navigation-compose 1.2.0" "androidx/navigation navigation-compose-android 2.8.9" \
+                   "androidx/tracing tracing-android 2.0.1" "androidx/sqlite sqlite-android 2.6.2" \
+                   "androidx/sqlite sqlite-framework-android 2.6.2" "androidx/annotation annotation-experimental 1.5.0" \
+                   "androidx/datastore datastore-core-android 1.2.1" "androidx/datastore datastore-core-android 1.1.7" \
                    "androidx/graphics graphics-shapes-android 1.0.1" "androidx/arch/core core-runtime 2.2.0"; do
             set -- $c; show "$1" "$2" "$3"
           done
