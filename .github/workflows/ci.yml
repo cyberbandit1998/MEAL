@@ -32,8 +32,10 @@ jobs:
       # the test JVM of CPU on a cold Gradle cache, and the 20 second per-test timeout in BaseUnitTest
       # then fires on a test that is fine (seen on two unrelated tests in two different modules).
       # --continue so one failing module does not hide the results of the others.
-      - name: Build debug APK
-        run: ./gradlew assembleDebug --continue --stacktrace
+      # The instrumented tests need an emulator to run (see ui-tests.yml) but are compiled here, so that a
+      # library update that breaks them is noticed.
+      - name: Build debug APK and compile the instrumented tests
+        run: ./gradlew assembleDebug assembleDebugAndroidTest --continue --stacktrace
 
       - name: Unit tests
         if: always()
