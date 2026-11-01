@@ -80,6 +80,7 @@
 	<string name="theme_dialog_dynamic_color">Dynamic color</string>
 	<string name="theme_dialog_dynamic_color_summary">Use colors from your wallpaper</string>
 	<string name="theme_dialog_close">Done</string>
+	<string name="recipe_info_keep_screen_on">Keep screen on</string>
 	<string name="activity_main_email_logs_subject">Copperpot logs</string>
 	<string name="activity_main_email_logs_confirmation_message">The logs contain sensitive data such as API token, shopping lists, and recipes. API tokens can be revoked using web client. The file can be viewed and edited if you send it to yourself instead.</string>
 	<string name="activity_main_email_logs_confirmation_title">Sending sensitive data</string>

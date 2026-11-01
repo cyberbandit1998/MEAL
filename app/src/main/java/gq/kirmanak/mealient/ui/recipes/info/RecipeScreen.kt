@@ -2,6 +2,7 @@ package gq.kirmanak.mealient.ui.recipes.info
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
@@ -28,11 +29,14 @@ internal fun RecipeScreen(
     viewModel: RecipeInfoViewModel = hiltViewModel(),
 ) {
     val state by viewModel.uiState.collectAsState()
+    val keepScreenOn by viewModel.keepScreenOn.collectAsState()
 
     BaseScreen { modifier ->
         RecipeScreen(
             modifier = modifier,
             state = state,
+            keepScreenOn = keepScreenOn,
+            onKeepScreenOnChange = viewModel::onKeepScreenOnChange,
         )
     }
 }
@@ -41,8 +45,12 @@ internal fun RecipeScreen(
 private fun RecipeScreen(
     state: RecipeInfoUiState,
     modifier: Modifier = Modifier,
+    keepScreenOn: Boolean = true,
+    onKeepScreenOnChange: (Boolean) -> Unit = {},
 ) {
-    KeepScreenOn()
+    if (keepScreenOn) {
+        KeepScreenOn()
+    }
 
     Column(
         modifier = modifier
@@ -55,6 +63,12 @@ private fun RecipeScreen(
             imageUrl = state.imageUrl,
             title = state.title,
             description = state.description,
+        )
+
+        KeepScreenOnToggle(
+            modifier = Modifier.padding(horizontal = Dimens.Small),
+            keepScreenOn = keepScreenOn,
+            onKeepScreenOnChange = onKeepScreenOnChange,
         )
 
         if (state.showIngredients) {
