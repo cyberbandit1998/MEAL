@@ -28,9 +28,16 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Unit tests and debug APK
-        # --continue so one failing module does not hide the results of the others
-        run: ./gradlew testDebugUnitTest assembleDebug --continue --stacktrace
+      # Compile first, then test. Running the tests while the app module is still compiling starves
+      # the test JVM of CPU on a cold Gradle cache, and the 20 second per-test timeout in BaseUnitTest
+      # then fires on a test that is fine (seen on two unrelated tests in two different modules).
+      # --continue so one failing module does not hide the results of the others.
+      - name: Build debug APK
+        run: ./gradlew assembleDebug --continue --stacktrace
+
+      - name: Unit tests
+        if: always()
+        run: ./gradlew testDebugUnitTest --continue --stacktrace
 
       - name: Publish test reports
         uses: mikepenz/action-junit-report@v4
