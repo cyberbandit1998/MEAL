@@ -42,7 +42,7 @@ junit = "4.13.2"
 # https://github.com/Kotlin/kotlinx.coroutines/releases
 coroutines = "1.10.2"
 # https://github.com/robolectric/robolectric/releases
-robolectric = "4.13"
+robolectric = "4.17"
 # https://mvnrepository.com/artifact/com.google.truth/truth
 truth = "1.4.5"
 # https://mockk.io/
