@@ -4,7 +4,7 @@ plugins {
     application
 }
 kotlin { jvmToolchain(21) }
-// Keep these versions equal to the ones in gradle/libs.versions.toml
+// The versions below are the ones in gradle/libs.versions.toml
 dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.2")
@@ -20,4 +20,4 @@ dependencies {
     implementation("javax.inject:javax.inject:1")
     runtimeOnly("org.slf4j:slf4j-nop:2.0.13")
 }
-application { mainClass.set("gq.kirmanak.mealient.datasource.impl.MainKt") }
+application { mainClass.set((findProperty("main") as String?) ?: "gq.kirmanak.mealient.datasource.impl.MainKt") }

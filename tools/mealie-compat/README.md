@@ -39,3 +39,11 @@ cd tools/mealie-compat/e2e && gradle run -Dmealie.url=http://127.0.0.1:9925
 Last run: Mealie 3.29.0, 21 of 21 checks pass with Kotlin 2.2.21, Ktor 2.3.13, OkHttp 4.12.1 and
 kotlinx-serialization 1.9.0. The URL import check only proves that the route accepts the request (Mealie
 answers 400 when the page has no recipe); it does not import a real recipe.
+
+Two more entry points, for login problems (`-Pmain=gq.kirmanak.mealient.datasource.impl.<name>`):
+
+- `LoginFlowKt` replays `AuthRepoImpl.authenticate()` on one long-lived client with the same token-cache
+  handling as the app: version check, login, create the API token, then use it.
+- `LoginErrorsKt` shows what the login screen displays for each failure. On Mealie 3.29.0, five wrong
+  passwords lock the account for 24 hours (`SECURITY_MAX_LOGIN_ATTEMPTS`, `SECURITY_USER_LOCKOUT_TIME`) and the
+  correct password is then refused with `423 Locked`, which the app shows as raw HTTP text.
