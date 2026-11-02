@@ -62,6 +62,12 @@ jobs:
           if grep -q "gq.kirmanak.mealient.provider" manifest.txt; then
             echo "A provider authority still uses Mealient's id"; exit 1
           fi
+          # The packaged launcher icon must be Copperpot's pot (cream #FFF4E8), not Mealient's orange burger (#FF9F2F)
+          FG=$("$AAPT2" dump resources "$APK" | grep -A2 'drawable/ic_launcher_foreground$' | grep -oE 'res/[^ ]+\.xml' | head -n1)
+          echo "launcher foreground file: $FG"
+          "$AAPT2" dump xmltree --file "$FG" "$APK" > icon.txt
+          grep -qi "#fffff4e8" icon.txt
+          if grep -qi "#ffff9f2f" icon.txt; then echo "The launcher icon is still Mealient's"; exit 1; fi
           cp "$APK" "copperpot-debug-${GITHUB_SHA::7}.apk"
 
       - name: Upload debug APK
