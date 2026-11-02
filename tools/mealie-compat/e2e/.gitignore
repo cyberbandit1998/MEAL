@@ -1,0 +1,6 @@
+# copied from datasource/ by sync.sh
+/src/main/kotlin/gq/kirmanak/mealient/datasource/*.kt
+/src/main/kotlin/gq/kirmanak/mealient/datasource/models/
+/src/main/kotlin/gq/kirmanak/mealient/datasource/impl/MealieServiceKtor.kt
+/build/
+/.gradle/
